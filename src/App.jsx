@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react'
 import './App.css'
+import BasicInfo from './components/BasicInfo/BasicInfo'
 
-function App() {
-  const [count, setCount] = useState(0)
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      person: [
+        { name: 'Jack', number: 1, dob: '3/12/89' },
+        { name: 'Lisa', number: 2, dob: '5/25/92' },
+        { name: 'Billie', number: 3, dob: '8/15/88' },
+        { name: 'Rachel', number: 4, dob: '3/1/98' },
+      ]
+    };
+    
+  }
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+ 
+  render() {
+    return (
+     <>
+      {this.state.person.map((person, index) => (
+        <BasicInfo 
+          key={index}
+          name={person.name} 
+          number={person.number}
+          dob={person.dob}
+         />
+      ))}
+     </>
+    )
+  }
 }
-
 export default App
